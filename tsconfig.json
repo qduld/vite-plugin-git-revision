@@ -1,16 +1,35 @@
+// {
+//   "compilerOptions": {
+//     "target": "esnext",
+//     "module": "esnext",
+//     "moduleResolution": "node",
+//     "strict": true,
+//     "jsx": "preserve",
+//     "resolveJsonModule": true,
+//     "esModuleInterop": true,
+//     "outDir": "dist",
+//     "lib": ["esnext", "dom"],
+//     "types": ["vite/client","node"],
+//     "sourceMap": true
+//   },
+//   "include": ["src/**/*.ts", "src/**/*.d.ts"]
+// }
+
 {
   "compilerOptions": {
-    "target": "esnext",
-    "module": "esnext",
+    "module": "ESNext",
+    "target": "es2017",
     "moduleResolution": "node",
     "strict": true,
-    "jsx": "preserve",
-    "resolveJsonModule": true,
+    "declaration": true,
+    "noUnusedLocals": true,
     "esModuleInterop": true,
     "outDir": "dist",
-    "lib": ["esnext", "dom"],
-    "types": ["vite/client","node"],
-    "sourceMap": true
+    "lib": ["dom", "esnext"],
+    "types": ["vite/client", "jest", "node"],
+    "sourceMap": false,
+    "noEmitOnError": true
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts"]
+  "include": ["src/**/*", "tests/**/*"],
+  "exclude": ["**/dist", "**/node_modules"]
 }
