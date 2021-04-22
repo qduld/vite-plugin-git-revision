@@ -1,27 +1,87 @@
-# Vue 3 + Typescript + Vite
+# vite-plugin-pages
 
-This template should help get you started developing with Vue 3 and Typescript in Vite.
+[![npm version](https://badgen.net/npm/v/vite-plugin-git-revision)](https://www.npmjs.com/package/vite-plugin-git-revision)
+[![monthly downloads](https://badgen.net/npm/dm/vite-plugin-git-revision)](https://www.npmjs.com/package/vite-plugin-git-revision)
 
-## Recommended IDE Setup
+> Git version info for Vue 3 applications using [Vite](https://github.com/vitejs/vite)
 
-[VSCode](https://code.visualstudio.com/) + [Vetur](https://marketplace.visualstudio.com/items?itemName=octref.vetur). Make sure to enable `vetur.experimental.templateInterpolationService` in settings!
+## Getting Started
 
-### If Using `<script setup>`
+Install:
 
-[`<script setup>`](https://github.com/vuejs/rfcs/pull/227) is a feature that is currently in RFC stage. To get proper IDE support for the syntax, use [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar) instead of Vetur (and disable Vetur).
+```bash
+$ npm install -D vite-plugin-git-revision
+```
 
-## Type Support For `.vue` Imports in TS
+Add to your `vite.config.js`:
 
-Since TypeScript cannot handle type information for `.vue` imports, they are shimmed to be a generic Vue component type by default. In most cases this is fine if you don't really care about component prop types outside of templates. However, if you wish to get actual prop types in `.vue` imports (for example to get props validation when using manual `h(...)` calls), you can use the following:
+```js
+import Vue from '@vitejs/plugin-vue';
+import GitRevision from 'vite-plugin-git-revision';
 
-### If Using Volar
+export default {
+  plugins: [
+    Vue(), 
+    GitRevision()
+  ],
+};
+```
+## Configuration
 
-Run `Volar: Switch TS Plugin on/off` from VSCode command palette.
+To use custom configuration, pass your options to Pages when instantiating the plugin:
 
-### If Using Vetur
+```js
+// vite.config.js
+import GitRevision from 'vite-plugin-git-revision';
 
-1. Install and add `@vuedx/typescript-plugin-vue` to the [plugins section](https://www.typescriptlang.org/tsconfig#plugins) in `tsconfig.json`
-2. Delete `src/shims-vue.d.ts` as it is no longer needed to provide module info to Typescript
-3. Open `src/main.ts` in VSCode
-4. Open the VSCode command palette
-5. Search and run "Select TypeScript version" -> "Use workspace version"
+export default {
+  plugins: [
+    GitRevision({
+      lightweightTags:false,
+      branch:false,
+      versionCommand:'describe --tags --long --dirty --always',
+      commithashCommand:'',
+      branchCommand:'',
+    }),
+  ],
+};
+```
+
+### lightweightTags
+
+- **Type:** `boolean`
+- **Default:** `false`
+
+lightweight tags support.
+
+### branch
+
+- **Type:** `boolean`
+- **Default:** `false`
+
+branch tags support.
+
+### versionCommand
+
+- **Type:** `string`
+- **Default:** `describe --always`
+
+change the default git command used to read the value of VERSION.
+
+### commithashCommand
+
+- **Type:** `string`
+- **Default:** `rev-parse HEAD`
+
+change the default git command used to read the value of COMMITHASH.
+
+### branchCommand
+
+- **Type:** `string`
+- **Default:** `rev-parse --abbrev-ref HEAD`
+
+change the default git command used to read the value of BRANCH.
+
+## License
+
+MIT License © 2021 [qduld](https://github.com/qduld)
