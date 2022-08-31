@@ -22,7 +22,7 @@ import GitRevision from 'vite-plugin-git-revision';
 export default {
   plugins: [
     Vue(), 
-    GitRevision()
+    GitRevision({})
   ],
 };
 ```
