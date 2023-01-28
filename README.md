@@ -26,6 +26,20 @@ export default {
   ],
 };
 ```
+
+Use it like this:
+```
+<template>
+  <footer>
+    App Version: {{ appVersion }}
+  </footer>
+</template>
+
+
+<script setup>
+  let appVersion = computed(()=> GITVERSION)
+</script>
+```
 ## Configuration
 
 To use custom configuration, pass your options to Pages when instantiating the plugin:
