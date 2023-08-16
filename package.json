@@ -2,9 +2,17 @@
   "name": "vite-plugin-git-revision",
   "version": "0.1.9",
   "description": "Vite plugin that generates VERSION and COMMITHASH files during build based on a local git repository.",
-  "main": "dist/index.js",
-  "module": "dist/index.mjs",
+  "type": "module",
+  "main": "dist/index.cjs",
+  "module": "dist/index.js",
   "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
   "scripts": {
     "dev": "npm run build -- --watch",
     "example:dev": "cp README.md example/README.md && npm -C example run dev",

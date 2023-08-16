@@ -1,10 +1,14 @@
-var exec = require('child_process').exec
-var execSync = require('child_process').execSync
-// import { exec,execSync } from 'child_process';
-import path from 'path';
-import { removeEmptyLines } from './remove-empty-lines';
+import * as child from "child_process";
+import * as path from "path";
+import { removeEmptyLines } from "./remove-empty-lines";
 
-export function runGitCommand(gitWorkTree:any, command:any, callback?:Function) {
+const { exec, execSync } = child;
+
+export function runGitCommand(
+  gitWorkTree: any,
+  command: any,
+  callback?: Function
+) {
   var gitCommand = gitWorkTree
     ? [
       'git',
